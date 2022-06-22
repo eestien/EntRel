@@ -1,0 +1,108 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network@latest/styles/vis-network.css" type="text/css" />
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vis-network@latest/dist/vis-network.min.js"> </script>
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+
+<style type="text/css">
+
+        #mynetwork {
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            border: 1px solid lightgray;
+            position: relative;
+            float: left;
+        }
+
+        
+
+        
+
+        
+</style>
+
+</head>
+
+<body>
+<div id = "mynetwork"></div>
+
+
+<script type="text/javascript">
+
+    // initialize global variables.
+    var edges;
+    var nodes;
+    var network; 
+    var container;
+    var options, data;
+
+    
+    // This method is responsible for drawing the graph, returns the drawn network
+    function drawGraph() {
+        var container = document.getElementById('mynetwork');
+        
+        
+
+        // parsing and collecting nodes and edges from the python
+        nodes = new vis.DataSet([{"id": "deep learning", "label": "deep learning", "shape": "dot"}, {"id": "core ape behaviours", "label": "core ape behaviours", "shape": "dot"}, {"id": "approach", "label": "approach", "shape": "dot"}, {"id": "Ky Fan inequalities", "label": "Ky Fan inequalities", "shape": "dot"}, {"id": "local information", "label": "local information", "shape": "dot"}, {"id": "model learned using this method", "label": "model learned using this method", "shape": "dot"}, {"id": "model", "label": "model", "shape": "dot"}, {"id": "tensor variate Gaussian process", "label": "tensor variate Gaussian process", "shape": "dot"}, {"id": "Kronecker algebra", "label": "Kronecker algebra", "shape": "dot"}, {"id": "low rank approximation", "label": "low rank approximation", "shape": "dot"}, {"id": "HOTRG", "label": "HOTRG", "shape": "dot"}, {"id": "network architectures", "label": "network architectures", "shape": "dot"}, {"id": "Shapley values", "label": "Shapley values", "shape": "dot"}, {"id": "model predictions", "label": "model predictions", "shape": "dot"}, {"id": "semi classical molecular dynamics simulation", "label": "semi classical molecular dynamics simulation", "shape": "dot"}, {"id": "generalized connected sums", "label": "generalized connected sums", "shape": "dot"}, {"id": "second order perturbation theory", "label": "second order perturbation theory", "shape": "dot"}, {"id": "sparse recovery", "label": "sparse recovery", "shape": "dot"}, {"id": "dictionary learning", "label": "dictionary learning", "shape": "dot"}, {"id": "low spatial resolution", "label": "low spatial resolution", "shape": "dot"}, {"id": "depth dependent microturbulent velocity", "label": "depth dependent microturbulent velocity", "shape": "dot"}, {"id": "log g", "label": "log g", "shape": "dot"}, {"id": "document level context", "label": "document level context", "shape": "dot"}, {"id": "grapheme to phoneme conversion", "label": "grapheme to phoneme conversion", "shape": "dot"}, {"id": "Higgs doublet models", "label": "Higgs doublet models", "shape": "dot"}, {"id": "black hole accretion", "label": "black hole accretion", "shape": "dot"}, {"id": "Teff", "label": "Teff", "shape": "dot"}, {"id": "symbolic AI", "label": "symbolic AI", "shape": "dot"}, {"id": "interstellar medium ISM", "label": "interstellar medium ISM", "shape": "dot"}, {"id": "axial anomaly", "label": "axial anomaly", "shape": "dot"}, {"id": "diamagnetic phase", "label": "diamagnetic phase", "shape": "dot"}, {"id": "viable parameter space", "label": "viable parameter space", "shape": "dot"}, {"id": "unitarity", "label": "unitarity", "shape": "dot"}, {"id": "ASV detection score space", "label": "ASV detection score space", "shape": "dot"}, {"id": "time dimensions", "label": "time dimensions", "shape": "dot"}, {"id": "electroweak scale", "label": "electroweak scale", "shape": "dot"}, {"id": "magnetization", "label": "magnetization", "shape": "dot"}, {"id": "static stability criterion", "label": "static stability criterion", "shape": "dot"}, {"id": "orbital ordering", "label": "orbital ordering", "shape": "dot"}, {"id": "system", "label": "system", "shape": "dot"}, {"id": "spin order", "label": "spin order", "shape": "dot"}, {"id": "non Gaussianity bounds", "label": "non Gaussianity bounds", "shape": "dot"}, {"id": "Witten Di Vecchia Veneziano", "label": "Witten Di Vecchia Veneziano", "shape": "dot"}, {"id": "real world datasets", "label": "real world datasets", "shape": "dot"}, {"id": "tracking accuracy", "label": "tracking accuracy", "shape": "dot"}, {"id": "accuracy", "label": "accuracy", "shape": "dot"}, {"id": "error reduction", "label": "error reduction", "shape": "dot"}, {"id": "real world applications", "label": "real world applications", "shape": "dot"}, {"id": "Hartree Fock approximation", "label": "Hartree Fock approximation", "shape": "dot"}, {"id": "inference", "label": "inference", "shape": "dot"}, {"id": "specificity", "label": "specificity", "shape": "dot"}, {"id": "execution time", "label": "execution time", "shape": "dot"}, {"id": "method", "label": "method", "shape": "dot"}, {"id": "real traffic", "label": "real traffic", "shape": "dot"}, {"id": "technique", "label": "technique", "shape": "dot"}, {"id": "ESnet", "label": "ESnet", "shape": "dot"}, {"id": "sparse matrices", "label": "sparse matrices", "shape": "dot"}, {"id": "diluted random matrices", "label": "diluted random matrices", "shape": "dot"}, {"id": "detector CRF methods", "label": "detector CRF methods", "shape": "dot"}, {"id": "region CNN approaches", "label": "region CNN approaches", "shape": "dot"}, {"id": "CFD applications", "label": "CFD applications", "shape": "dot"}, {"id": "Ising", "label": "Ising", "shape": "dot"}, {"id": "one", "label": "one", "shape": "dot"}, {"id": "hadrons", "label": "hadrons", "shape": "dot"}, {"id": "PESOA", "label": "PESOA", "shape": "dot"}, {"id": "PROVOP", "label": "PROVOP", "shape": "dot"}, {"id": "WORKLETS", "label": "WORKLETS", "shape": "dot"}, {"id": "x ray diffraction", "label": "x ray diffraction", "shape": "dot"}, {"id": "dataset", "label": "dataset", "shape": "dot"}, {"id": "replaying execution logs", "label": "replaying execution logs", "shape": "dot"}, {"id": "vanilla LSTM network", "label": "vanilla LSTM network", "shape": "dot"}, {"id": "bidirectional training", "label": "bidirectional training", "shape": "dot"}, {"id": "tracking algorithm", "label": "tracking algorithm", "shape": "dot"}, {"id": "Transformer", "label": "Transformer", "shape": "dot"}, {"id": "proximal distance algorithm", "label": "proximal distance algorithm", "shape": "dot"}, {"id": "heuristics", "label": "heuristics", "shape": "dot"}, {"id": "automated system", "label": "automated system", "shape": "dot"}, {"id": "FusionNet", "label": "FusionNet", "shape": "dot"}, {"id": "human judgment", "label": "human judgment", "shape": "dot"}, {"id": "monolingual approaches", "label": "monolingual approaches", "shape": "dot"}, {"id": "resolvent algebras", "label": "resolvent algebras", "shape": "dot"}, {"id": "multirate model", "label": "multirate model", "shape": "dot"}, {"id": "baseline algorithms", "label": "baseline algorithms", "shape": "dot"}, {"id": "algorithm", "label": "algorithm", "shape": "dot"}, {"id": "abundance stratifications", "label": "abundance stratifications", "shape": "dot"}, {"id": "quantum wires", "label": "quantum wires", "shape": "dot"}, {"id": "chain of non linear oscillators", "label": "chain of non linear oscillators", "shape": "dot"}, {"id": "neutral spin 1 2 particles", "label": "neutral spin 1 2 particles", "shape": "dot"}, {"id": "global leaders", "label": "global leaders", "shape": "dot"}, {"id": "Gaussian and oscillator basis functions", "label": "Gaussian and oscillator basis functions", "shape": "dot"}, {"id": "techniques include generally applicable heuristics", "label": "techniques include generally applicable heuristics", "shape": "dot"}, {"id": "monopole", "label": "monopole", "shape": "dot"}, {"id": "dipole", "label": "dipole", "shape": "dot"}, {"id": "anisotropies", "label": "anisotropies", "shape": "dot"}, {"id": "metallic island", "label": "metallic island", "shape": "dot"}, {"id": "gate electrode", "label": "gate electrode", "shape": "dot"}, {"id": "cubic term", "label": "cubic term", "shape": "dot"}, {"id": "dynamics", "label": "dynamics", "shape": "dot"}]);
+        edges = new vis.DataSet([{"arrows": "to", "color": "#390062", "from": "deep learning", "title": "Used-for", "to": "core ape behaviours"}, {"arrows": "to", "color": "#390062", "from": "deep learning", "title": "Used-for", "to": "core ape behaviours"}, {"arrows": "to", "color": "#390062", "from": "deep learning", "title": "Used-for", "to": "approach"}, {"arrows": "to", "color": "#0CCE35", "from": "deep learning", "title": "Conjunction", "to": "sparse recovery"}, {"arrows": "to", "color": "#0CCE35", "from": "deep learning", "title": "Conjunction", "to": "dictionary learning"}, {"arrows": "to", "color": "#0CCE35", "from": "deep learning", "title": "Conjunction", "to": "symbolic AI"}, {"arrows": "to", "color": "#477183", "from": "approach", "title": "Compare", "to": "approach"}, {"arrows": "to", "color": "#477183", "from": "approach", "title": "Compare", "to": "human judgment"}, {"arrows": "to", "color": "#477183", "from": "approach", "title": "Compare", "to": "monolingual approaches"}, {"arrows": "to", "color": "#477183", "from": "approach", "title": "Compare", "to": "baseline algorithms"}, {"arrows": "to", "color": "#390062", "from": "Ky Fan inequalities", "title": "Used-for", "to": "approach"}, {"arrows": "to", "color": "#390062", "from": "local information", "title": "Used-for", "to": "approach"}, {"arrows": "to", "color": "#390062", "from": "local information", "title": "Used-for", "to": "model learned using this method"}, {"arrows": "to", "color": "#390062", "from": "local information", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "tensor variate Gaussian process", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "Kronecker algebra", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "Kronecker algebra", "title": "Conjunction", "to": "low rank approximation"}, {"arrows": "to", "color": "#390062", "from": "low rank approximation", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "HOTRG", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "network architectures", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "network architectures", "title": "Conjunction", "to": "low spatial resolution"}, {"arrows": "to", "color": "#390062", "from": "Shapley values", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "Shapley values", "title": "Used-for", "to": "model predictions"}, {"arrows": "to", "color": "#390062", "from": "semi classical molecular dynamics simulation", "title": "Used-for", "to": "model"}, {"arrows": "to", "color": "#390062", "from": "generalized connected sums", "title": "Used-for", "to": "approach"}, {"arrows": "to", "color": "#0CCE35", "from": "second order perturbation theory", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "sparse recovery", "title": "Conjunction", "to": "dictionary learning"}, {"arrows": "to", "color": "#0CCE35", "from": "depth dependent microturbulent velocity", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "depth dependent microturbulent velocity", "title": "Conjunction", "to": "log g"}, {"arrows": "to", "color": "#0CCE35", "from": "document level context", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "grapheme to phoneme conversion", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "Higgs doublet models", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "black hole accretion", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#0CCE35", "from": "Teff", "title": "Conjunction", "to": "log g"}, {"arrows": "to", "color": "#0CCE35", "from": "interstellar medium ISM", "title": "Conjunction", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "axial anomaly", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "diamagnetic phase", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "viable parameter space", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "unitarity", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "ASV detection score space", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "time dimensions", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "electroweak scale", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "magnetization", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "static stability criterion", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "orbital ordering", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "orbital ordering", "title": "Feature-of", "to": "system"}, {"arrows": "to", "color": "#8CD0A4", "from": "spin order", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "spin order", "title": "Feature-of", "to": "system"}, {"arrows": "to", "color": "#8CD0A4", "from": "non Gaussianity bounds", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#8CD0A4", "from": "Witten Di Vecchia Veneziano", "title": "Feature-of", "to": "model"}, {"arrows": "to", "color": "#7D6277", "from": "real world datasets", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "real world datasets", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "tracking accuracy", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "accuracy", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "accuracy", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "accuracy", "title": "Evaluate-for", "to": "Hartree Fock approximation"}, {"arrows": "to", "color": "#7D6277", "from": "accuracy", "title": "Evaluate-for", "to": "inference"}, {"arrows": "to", "color": "#7D6277", "from": "accuracy", "title": "Evaluate-for", "to": "method"}, {"arrows": "to", "color": "#7248AD", "from": "accuracy", "title": "Hyponym-of", "to": "CFD applications"}, {"arrows": "to", "color": "#7D6277", "from": "error reduction", "title": "Evaluate-for", "to": "model"}, {"arrows": "to", "color": "#7D6277", "from": "real world applications", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "specificity", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "execution time", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#477183", "from": "method", "title": "Compare", "to": "method"}, {"arrows": "to", "color": "#347A3F", "from": "method", "title": "Part-of", "to": "algorithm"}, {"arrows": "to", "color": "#7D6277", "from": "real traffic", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7D6277", "from": "real traffic", "title": "Evaluate-for", "to": "technique"}, {"arrows": "to", "color": "#7D6277", "from": "ESnet", "title": "Evaluate-for", "to": "approach"}, {"arrows": "to", "color": "#7248AD", "from": "sparse matrices", "title": "Hyponym-of", "to": "model"}, {"arrows": "to", "color": "#7248AD", "from": "diluted random matrices", "title": "Hyponym-of", "to": "model"}, {"arrows": "to", "color": "#7248AD", "from": "detector CRF methods", "title": "Hyponym-of", "to": "method"}, {"arrows": "to", "color": "#7248AD", "from": "region CNN approaches", "title": "Hyponym-of", "to": "method"}, {"arrows": "to", "color": "#7248AD", "from": "Ising", "title": "Hyponym-of", "to": "model"}, {"arrows": "to", "color": "#7248AD", "from": "one", "title": "Hyponym-of", "to": "approach"}, {"arrows": "to", "color": "#7248AD", "from": "one", "title": "Hyponym-of", "to": "dataset"}, {"arrows": "to", "color": "#7248AD", "from": "one", "title": "Hyponym-of", "to": "replaying execution logs"}, {"arrows": "to", "color": "#7248AD", "from": "hadrons", "title": "Hyponym-of", "to": "system"}, {"arrows": "to", "color": "#7248AD", "from": "PESOA", "title": "Hyponym-of", "to": "approach"}, {"arrows": "to", "color": "#7248AD", "from": "PROVOP", "title": "Hyponym-of", "to": "approach"}, {"arrows": "to", "color": "#7248AD", "from": "WORKLETS", "title": "Hyponym-of", "to": "approach"}, {"arrows": "to", "color": "#7248AD", "from": "x ray diffraction", "title": "Hyponym-of", "to": "method"}, {"arrows": "to", "color": "#7248AD", "from": "vanilla LSTM network", "title": "Hyponym-of", "to": "model"}, {"arrows": "to", "color": "#477183", "from": "bidirectional training", "title": "Compare", "to": "method"}, {"arrows": "to", "color": "#477183", "from": "tracking algorithm", "title": "Compare", "to": "approach"}, {"arrows": "to", "color": "#477183", "from": "Transformer", "title": "Compare", "to": "method"}, {"arrows": "to", "color": "#477183", "from": "proximal distance algorithm", "title": "Compare", "to": "method"}, {"arrows": "to", "color": "#477183", "from": "heuristics", "title": "Compare", "to": "approach"}, {"arrows": "to", "color": "#477183", "from": "heuristics", "title": "Compare", "to": "automated system"}, {"arrows": "to", "color": "#347A3F", "from": "heuristics", "title": "Part-of", "to": "techniques include generally applicable heuristics"}, {"arrows": "to", "color": "#477183", "from": "FusionNet", "title": "Compare", "to": "model"}, {"arrows": "to", "color": "#477183", "from": "resolvent algebras", "title": "Compare", "to": "approach"}, {"arrows": "to", "color": "#477183", "from": "multirate model", "title": "Compare", "to": "model"}, {"arrows": "to", "color": "#477183", "from": "algorithm", "title": "Compare", "to": "baseline algorithms"}, {"arrows": "to", "color": "#347A3F", "from": "abundance stratifications", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "quantum wires", "title": "Part-of", "to": "system"}, {"arrows": "to", "color": "#347A3F", "from": "chain of non linear oscillators", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "neutral spin 1 2 particles", "title": "Part-of", "to": "system"}, {"arrows": "to", "color": "#347A3F", "from": "global leaders", "title": "Part-of", "to": "system"}, {"arrows": "to", "color": "#347A3F", "from": "Gaussian and oscillator basis functions", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "monopole", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "dipole", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "anisotropies", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "metallic island", "title": "Part-of", "to": "system"}, {"arrows": "to", "color": "#347A3F", "from": "gate electrode", "title": "Part-of", "to": "system"}, {"arrows": "to", "color": "#347A3F", "from": "cubic term", "title": "Part-of", "to": "model"}, {"arrows": "to", "color": "#347A3F", "from": "dynamics", "title": "Part-of", "to": "model"}]);
+
+        // adding nodes and edges to the graph
+        data = {nodes: nodes, edges: edges};
+
+        var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+        
+        
+
+        
+
+        network = new vis.Network(container, data, options);
+	 
+        
+
+
+        
+
+        return network;
+
+    }
+
+    drawGraph();
+
+</script>
+</body>
+</html>
